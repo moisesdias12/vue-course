@@ -1,0 +1,31 @@
+<!-- aula 13 -->
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+    <p>
+        {{titulo}}
+    </p>
+    <p>
+        {{saudacao()}}
+    </p>
+</div>
+
+<script>
+    new Vue({
+        // 'el' é o id onde a classe view vai procurar
+        el: '#app',
+        // data é onde eu vou atribuir os valores para os elementos cujo id eu coloquei no el
+        data: {
+            titulo: 'usando vue'
+        },
+        // methods é auto explicativo
+        methods: {
+            saudacao: function() {
+                // pra acessar os elementos do data precisa do this, pra executar outras funcoes tambem
+                // o this representa a instancia do vue
+                console.log(this)
+                return this.titulo
+            }
+        }
+    })
+</script>
