@@ -1,0 +1,39 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<head></head>
+<div id="app">
+    <p>{{contador}}</p>
+
+    <!-- eu só vou identificar o mouse move quando
+    passar o mouse EM CIMA DESSE PARAGRAFO -->
+    <p v-on:mousemove="atualizarXY">Mouse: {{ x }} e {{ y }}</p>
+
+    <!-- v-on:algum-evento, diretiva para interceptar eventos,
+    dispara alguma funcao quando o evento especificado ocorre
+    v-on:click, v-on:mousemove etc -->
+
+    <!-- IMPORTANTE: por padrão, sempre que um evento do browser é interceptado
+    pelo vue, por padrão a variavel event é passada -->
+
+    <button v-on:click="somar">Somar 1</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar: function(event) {
+                console.log(event)
+                this.contador++
+            },
+            atualizarXY: function(event) {
+                this.x = event.clientX
+                this.y = event.clientY
+            }
+        } 
+    })
+</script>

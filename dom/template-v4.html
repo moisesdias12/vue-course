@@ -1,0 +1,38 @@
+<!-- aula 13 -->
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+    <!-- valor textual é enviado usando double moustache -->
+    <p>{{titulo}}</p>
+    <!-- tag-teste é uma propriedade personalizada -->
+    <p tag-teste="valor tag teste">{{saudacao()}}</p>
+    <!-- propriedades nas tags a gente usa diretivas (v-bind) -->
+    <!-- o vue bind liga algo que ta na vue instance a algo na tag -->
+    <a v-bind:href="link">Google</a>
+</div>
+
+<!-- consultas:
+codument.querySelector('[tag-teste').getAttribute('tag-teste') -->
+
+
+<script>
+    new Vue({
+        // 'el' é o id onde a classe view vai procurar
+        el: '#app',
+        // data é onde eu vou atribuir os valores para os elementos cujo identificador eu coloquei no el
+        data: {
+            titulo: 'usando vue',
+            link: 'http://google.com.br'
+        },
+        // methods é auto explicativo
+        methods: {
+            saudacao: function() {
+                // pra acessar os elementos do data precisa do this, pra executar outras funcoes tambem
+                // o this representa a instancia do vue
+                console.log("primeira funcao")
+                console.log(this)
+                return this.titulo
+            }
+        }
+    })
+</script>

@@ -1,0 +1,78 @@
+<!-- MODIFICADORES DE EVENTO -->
+
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<head></head>
+<div id="app">
+    <p>{{contador}}</p>
+
+    <!-- eu só vou identificar o mouse move quando
+    passar o mouse EM CIMA DESSE PARAGRAFO pq o atributo mousemove ta só nele-->
+    <p v-on:mousemove="atualizarXY">
+        Mouse: {{ x }} e {{ y }}
+        
+        <!-- duas formas de parar o evento do mouse -->
+        <span v-on:mousemove="parar"> PARAR AQUI </span>
+        <span v-on:mousemove.stop=""> parar aqui também </span>
+    </p>
+
+    <!-- aqui estou anulando o click para acessar o link -->
+    <a href="http://google.com" v-on:click.prevent="">google</a>
+    <a href="http://google.com" v-on:click="naoNavegar">google2</a>
+
+
+    <!-- v-on.stop = event.stopPropagation() 
+    - it is used to stop bubbling, so if you have 
+    a parent and a child and they both have a click event, 
+    and when clicking the child you only want it's event to 
+    happen, you'll use this.
+
+    v-on.prevent = event.preventDefault 
+    - it is used to prevent the default behavior of the clicked element, 
+    so if you clicked an a tag, it will prevent it from 
+    going to the link it points to. -->
+    
+
+    <!-- v-on:algum-evento, diretiva para interceptar eventos,
+    dispara alguma funcao quando o evento especificado ocorre
+    v-on:click, v-on:mousemove etc -->
+
+    <!-- IMPORTANTE: sempre que um evento do browser é interceptado
+    pelo vue, por padrão a variavel event é passada -->
+    <button v-on:click="somar">Somar 1</button>
+
+    <!-- você pode também colocar os parâmetros para enviar para o método
+    e se for enviar o event, colocar o sinal '$' antes e enviar em qualquer
+    posição dentre os argumentos -->
+    <button v-on:click="somarMais(4, $event)">somar mais</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar: function(event) {
+                console.log(event)
+                this.contador++
+            },
+            atualizarXY: function(event) {
+                this.x = event.clientX
+                this.y = event.clientY
+            },
+            somarMais(valorSoma, event) {
+                this.contador += valorSoma
+            },
+            parar (event) {
+                event.stopPropagation()
+            },
+            naoNavegar (event) {
+                event.preventDefault()
+            }
+        } 
+    })
+</script>

@@ -1,0 +1,23 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<head></head>
+<div id="app">
+    <p>{{contador}}</p>
+    <!-- v-on:algum-evento, diretiva para interceptar eventos,
+    dispara alguma funcao quando o evento especificado ocorre
+    v-on:click, v-on:mousemove etc -->
+    <button v-on:click="somar">Somar 1</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0
+        },
+        methods: {
+            somar: function() {
+                this.contador++
+            }
+        } 
+    })
+</script>
