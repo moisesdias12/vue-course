@@ -1,0 +1,19 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<head></head>
+<div id="app">
+    <p>{{titulo}}</p>
+    <!-- v-bind javascript -> html
+    v-on html -> javascript --> 
+    <!-- v-model é two way binding, faz o papel do v-on e do v-bind -->
+    <!-- <input type="text" v-bind:value="titulo" v-on:input="titulo = $event.target.value"> -->
+    <input type="text" v-model="titulo">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'usando vue'
+        }
+    })
+</script>

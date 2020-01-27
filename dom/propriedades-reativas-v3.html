@@ -1,0 +1,53 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <button v-on:click="aumentar">aumentar</button>
+    <button v-on:click="diminuir">diminuir</button>
+    <button v-on:click="contador2++">aaaaaa</button>
+    <p>contador: {{ contador }} || {{ contador2 }}</p>
+
+    <!-- eu chamo a computed sem os parenteses -->
+    <p>resultado: {{ resultado }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            contador2: 0
+        },
+
+        // computed output is cached.
+        // if something independent of the computed property changes on the page 
+        // and the UI is re-rendered, the cached result will be returned, 
+        // and the computed property will not be re-calculated, 
+        // sparing us a potentially expensive operation.
+        computed: {
+            resultado() {
+                console.log("pqp")
+                return this.contador >= 5 ? ">= 5" : "< 5"
+            }
+        },
+
+        // watch monitora as alterações de alguma data ou computed
+        // IMPORTANTE!!! eu posso dar um watch no computed resultado assim como na data contador
+        // isso vai triggar o watch quando o retorno mudar
+        watch: {
+            contador(novo, antigo) {
+                console.log(novo, antigo)
+                setTimeout(() => {
+                    this.contador = 0
+                }, 2000)
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador++
+            },
+            diminuir() {
+                this.contador--
+            }
+        }
+    })
+</script>

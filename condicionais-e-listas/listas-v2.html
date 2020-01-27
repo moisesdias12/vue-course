@@ -1,0 +1,43 @@
+<!-- ACESSANDO O INDICE ATUAL -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <ul>
+        <!-- SEM V-FOR: -->
+        <!-- <li>vermelho</li>
+        <li>verde</li>
+        <li>amarelo</li>
+        <li>azul</li> -->
+
+        <!-- COM V-FOR -->
+        <!-- apenas como exemplo, terão 4 li, pois cores tem 4 elementos
+        e cada uma terá o atributo teste atribuido
+        a respectiva cor da iteração -->
+
+        <!-- dentro dos parenteses, no for, o primeiro argumento é o elemento e o segundo elemento é o indice,
+        independente dos nomes -->
+        <li v-for="(element, index) in cores" :teste="cor"> {{ element }} no indice {{ index }} </li>
+    </ul>
+    
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+            pessoas:[
+                {nome: 'ana', idade: 26, peso: 59},
+                {nome: 'guilherme', idade: 22, peso: 89}
+            ]
+            
+        }
+    })
+</script>
+
+<style>
+    ul {
+        list-style: none;
+    }
+</style>

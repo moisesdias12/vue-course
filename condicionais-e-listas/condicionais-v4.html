@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+    <!-- usando template no lugar da div, no console do navegador nao vai aparecer
+    que os dois paragrafos estao dentro de uma div,
+    o template nem aparece no console, ele ta só segurando o if -->
+    <template v-if="logado">
+        <p>usuario logado {{ nome }}</p>
+        <p>perfil: admin</p>
+    </template>
+    <p v-else-if="anonimo">navegando como anonimo</p>
+
+    <!-- o v-if, else faz o elento sumir da pagina, você não vai encontrar ele inspecionando no browser -->
+    <!-- o v-else e v-else-if só funciona se a tag anterior tiver v-if -->
+    <p v-else>nenhum usuario logado</p>
+    <button @click="logado = !logado">{{ logado ? "sair" : "entrar" }}</button>
+    <input type="checkbox" v-model="anonimo">
+    <hr>
+
+    <!-- diferente do v-if else, você pode inspecionar no browser a div com o v-show
+    o v-show aplica style="display: none" na div, se o parametro for verdadeiro
+    o v-show trabalha com css, o v-if remove o elemento da dom -->
+    <footer v-show="logado">
+        desenvolvido para voce
+    </footer>
+    <footer v-show="!logado">
+        desenvolvido para voce que nao tem conta seu troxa
+    </footer>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nome: 'maria',
+            logado: false,
+            anonimo: true
+        }
+    })
+</script>

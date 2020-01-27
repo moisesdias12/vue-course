@@ -1,0 +1,67 @@
+<!-- aula 38 -->
+<script src="https://unpkg.com/vue"></script>
+
+<style>
+    .caixas {
+        display: flex;
+        justify-content: space-around;
+    }
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+    }
+    .c1 {
+        background-color: red;
+    }
+    .c2 {
+        background-color: blue;
+    }
+    .c3 {
+        background-color: green;
+    }
+    .girar {
+        transform: rotate(45deg);
+    }
+</style>
+
+<div id="app">
+    <div class="caixas">
+        <!-- 'background-color' ou backgroundColor -->
+        <div class="demo" :style="{backgroundColor: cor}"></div>
+
+        <!-- SE FOR USAR VARIAVEL: VALOR tem que por dentro dos colchetes  -->
+        <!-- <div class="demo" :style="[meuEstilo, height: altura]"></div> -->
+        <!-- a linha acima daria erro por causa do height: altura sem colchetes -->
+        <div class="demo" :style="[{meuEstilo: true}, {height: altura}]"></div>
+        <div class="demo"></div>
+    </div>
+    <hr>
+    <input type="text" v-model="cor">
+    <input type="text" v-model="largura">
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data: {
+            cor: 'red',
+            largura: 100,
+            altura: 20
+        },
+        computed: {
+            // novamente, como é uma computed, mudando a cor ou largura a funcao vai ser executada,
+            // senao vai voltar o valor da primeira execucao, ja que retornaria o mesmo valor
+            meuEstilo() {
+                return {
+                    backgroundColor: this.cor,
+                    width: this.largura + 'px'
+                }
+            }
+        },
+        methods: {
+            
+        }
+
+    })
+</script>

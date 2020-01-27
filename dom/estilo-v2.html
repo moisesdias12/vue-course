@@ -1,0 +1,55 @@
+<script src="https://unpkg.com/vue"></script>
+
+<style>
+    #app {
+        display: flex;
+        justify-content: space-around;
+    }
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+    }
+    .c1 {
+        background-color: red;
+    }
+    .c2 {
+        background-color: blue;
+    }
+    .c3 {
+        background-color: green;
+    }
+</style>
+
+<div id="app">
+    <!-- o :class inclui o c1 nas classes da div se aplicarC1 for verdadeiro
+    e o @click muda de verdadeiro para falso ao clickar -->
+    <!-- as duas primeiras divs fazem a mesma coisa, perceba (ivair, a petulância do cavalo) a otimização da segunda -->
+    <!-- quando eu clico eu mudo o aplicarC1, logo, chamo a computed estilo1 que depende da aplicarC1 -->
+    <div class="demo" :class="{c1: aplicarC1, c2: !aplicarC1}" @click="aplicarC1 = !aplicarC1"></div>
+    <div class="demo" :class="estilo1" @click="aplicarC1 = !aplicarC1"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data: {
+            // não esqueça que as variaveis sao atribuidas com : e não =
+            aplicarC1: false
+        },
+        computed: {
+            estilo1() {
+                return {
+                    c1: this.aplicarC1,
+                    c2: !this.aplicarC1
+                }
+            }
+        },
+        methods: {
+            
+        }
+
+    })
+</script>

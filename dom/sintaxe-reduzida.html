@@ -1,0 +1,25 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<head></head>
+<div id="app">
+    <p>{{contador}}</p>
+
+    <!-- @ significa v-on: -->
+    <button @click="somar">Somar</button>
+
+    <!-- : significa v-bind: -->
+    <input type="text" :value="contador">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0
+        },
+        methods: {
+            somar: function() {
+                this.contador++
+            }
+        } 
+    })
+</script>

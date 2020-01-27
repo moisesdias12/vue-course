@@ -48,7 +48,10 @@
     posição dentre os argumentos -->
     <button v-on:click="somarMais(4, $event)">somar mais</button>
 
-    <input type="text" v-on:keyup="exibirAlerta">
+    <!-- v-on:keyup é qlqr tecla
+    v-on:keyup.enter só a enter
+    keyup.enter.alt pega enter E alt -->
+    <input type="text" v-on:keyup.enter.alt="exibirAlerta">
 </div>
 
 <script>
