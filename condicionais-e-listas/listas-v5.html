@@ -1,0 +1,72 @@
+<!-- ITERANDO EM UMA LISTA DE NUMEROS -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <ul>
+        <!-- SEM V-FOR: -->
+        <!-- <li>vermelho</li>
+        <li>verde</li>
+        <li>amarelo</li>
+        <li>azul</li> -->
+
+        <!-- COM V-FOR -->
+        <!-- apenas como exemplo, terão 4 li, pois cores tem 4 elementos
+        e cada uma terá o atributo teste atribuido
+        a respectiva cor da iteração -->
+
+        <!-- dentro dos parenteses, no for DE LISTA, o primeiro argumento é o elemento e o segundo elemento é o indice,
+        independente dos nomes -->
+        <li v-for="(element, index) in cores" :key="element" :teste="element"> {{ element }} no indice {{ index }} </li>
+    </ul>
+    <button @click="cores.push('branco')">adicionar</button>
+
+    <hr>
+
+    <!-- se no lugar de template vc por div, vai gerar 4 divs, cada uma com um h1 e um p
+    como foi usado template, vai ter 4 sequencias de h1 e p, sem nada englobando eles -->
+    <template v-for="(element, index) in cores">
+        <h1>{{ element }}</h1>
+        <p>{{ index }}</p>
+    </template>
+
+    <hr>
+    <ul>
+        <li v-for="pessoa in pessoas">
+            <!-- no for DE OBJETOS dentro dos parenteses temos valor, chave e indice nessa ordem -->
+            <div v-for="(valor, chave, index) in pessoa">
+                {{ index }} {{ chave }} = {{ valor }}
+            </div>
+        </li>
+    </ul>
+
+    <hr>
+
+    <div v-for="i in 10">{{ i }}</div>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+            pessoas: [
+                { nome: 'ana', idade: 26, peso: 59 },
+                { nome: 'guilherme', idade: 22, peso: 89 }
+            ]
+
+        }
+    })
+</script>
+
+<style>
+    ul {
+        list-style: none;
+    }
+
+    h1,
+    p {
+        display: inline;
+    }
+</style>
